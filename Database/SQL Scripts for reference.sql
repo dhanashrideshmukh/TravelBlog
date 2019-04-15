@@ -24,3 +24,14 @@ ON b.UserID = u.UserID
 
 WHERE b.Published =1
 ORDER BY b.DatePosted DESC
+
+## Add in new blogpost using username/countryname/continentname/categoryname (ie where the IDs aren't known)
+
+INSERT INTO blog(UserID, Title, Content, CountryID, ContinentID, CategoryID, DatePosted)
+VALUES ((SELECT UserID FROM user WHERE Username = 'catlover'), 
+        'Cats in Greece', 
+        'Test content for Cats in Greece blog post.',
+        (SELECT CountryID FROM country WHERE CountryName = 'Greece'),
+        (SELECT ContinentID FROM continent WHERE ContinentName = 'Europe'),
+        (SELECT CategoryID FROM category WHERE CategoryName = 'Trip Report')
+        ,CURRENT_DATE);
