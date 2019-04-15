@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `blog`
 --
+CREATE DATABASE IF NOT EXISTS travelblog;
+USE travelblog; 
 
 CREATE TABLE `blog` (
   `BlogID` smallint(5) NOT NULL,
