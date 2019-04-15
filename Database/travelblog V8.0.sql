@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2019 at 12:09 AM
+-- Generation Time: Apr 16, 2019 at 01:40 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.0.33
 
@@ -63,6 +63,16 @@ ON b.UserID = u.UserID
 
 WHERE b.Published =1
 ORDER BY b.DatePosted DESC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateBlog` (IN `formBlogID` SMALLINT(5), IN `formUsername` VARCHAR(50), IN `formTitle` VARCHAR(100), IN `formContent` TEXT, IN `formCountryName` VARCHAR(100), IN `formContinentName` VARCHAR(100), IN `formCategoryName` VARCHAR(50))  UPDATE blog SET
+UserID = (SELECT UserID FROM user WHERE Username = 'formUsername') 
+,Title = 'formTitle'
+, Content = 'formContent'
+, CountryID = (SELECT CountryID FROM country WHERE CountryName = 'formCountryName')
+, ContinentID = (SELECT ContinentID FROM continent WHERE ContinentName = 'formContinentName')
+, CategoryID = (SELECT CategoryID FROM category WHERE CategoryName = 'formCategoryName')
+
+WHERE BlogID='formBlogID'$$
 
 DELIMITER ;
 
