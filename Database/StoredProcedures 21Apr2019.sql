@@ -122,3 +122,64 @@ UPDATE blog SET
 LikeCounter = LikeCounter-1
 
 WHERE BlogID=formBlogID;
+                                                            
+############################################                                                            
+--> readmy Blogs procedure    
+CREATE PROCEDURE readMyBlogs(IN formUsername VARCHAR(50)) 
+SELECT 
+               b.BlogID
+               ,u.Username
+               ,b.Title
+               ,b.Content
+                ,cou.CountryName
+                ,con.ContinentName
+                ,cat.CategoryName
+                ,b.DatePosted
+               ,b.LikeCounter
+               
+                FROM `blog` as b
+               INNER JOIN country as cou
+               ON b.CountryID = cou.CountryID
+              INNER JOIN continent as con
+               ON b.ContinentID = con.ContinentID
+               INNER JOIN category as cat
+               ON b.CategoryID = cat.CategoryID
+                INNER JOIN user as u
+               ON b.UserID = u.UserID
+               
+               WHERE u.Username = formUsername
+               ORDER BY b.DatePosted DESC;
+                                            
+############################################                                                            
+--> search Blogs procedure   
+ 
+CREATE PROCEDURE searchBlog(IN searchquery VARCHAR(50)) 
+SELECT 
+                b.BlogID
+                ,u.Username
+               ,b.Title
+               ,b.Content
+               ,cou.CountryName
+              ,con.ContinentName
+              ,cat.CategoryName
+               ,b.DatePosted
+               ,b.LikeCounter
+               
+              FROM `blog` as b
+               INNER JOIN country as cou
+              ON b.CountryID = cou.CountryID
+              INNER JOIN continent as con
+               ON b.ContinentID = con.ContinentID
+               INNER JOIN category as cat
+              ON b.CategoryID = cat.CategoryID
+               INNER JOIN user as u
+               ON b.UserID = u.UserID
+               
+               WHERE (cou.CountryName LIKE searchquery) OR (cat.CategoryName LIKE searchquery) OR (con.ContinentName LIKE searchquery) OR (b.Title LIKE searchquery) OR (b.Content LIKE searchquery)
+               ORDER BY b.DatePosted DESC;
+                                                       
+                                                        
+                                                        
+                                                        
+                                                            
+                                                            
