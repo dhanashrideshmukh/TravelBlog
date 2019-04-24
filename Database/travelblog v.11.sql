@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `travelblog`
 --
+CREATE DATABASE IF NOT EXISTS `travelblog` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `travelblog`;
 
 DELIMITER $$
 --
