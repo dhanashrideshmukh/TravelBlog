@@ -178,8 +178,19 @@ SELECT
                WHERE (cou.CountryName LIKE searchquery) OR (cat.CategoryName LIKE searchquery) OR (con.ContinentName LIKE searchquery) OR (b.Title LIKE searchquery) OR (b.Content LIKE searchquery)
                ORDER BY b.DatePosted DESC;
                                                        
+ ############################################                                                            
+--> updatePAssword procedure                                                          
+   CREATE PROCEDURE updatePassword(IN formUsername VARCHAR(50), IN formPassword VARCHAR(50)) 
+
+   UPDATE `user` SET
+	Username = formUsername
+	, Password = formPassword
+
+	WHERE Username=formUsername;                                                     
                                                         
-                                                        
-                                                        
-                                                            
+ ###################
+
+ CREATE PROCEDURE confirmUserExists(IN formUsername VARCHAR(50)) 
+
+	SELECT * FROM `user` where Username=formUsername;                                                           
                                                             
