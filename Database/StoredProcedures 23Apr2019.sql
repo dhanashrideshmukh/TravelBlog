@@ -194,3 +194,11 @@ SELECT
 
 	SELECT * FROM `user` where Username=formUsername;                                                           
                                                             
+###############################
+CREATE PROCEDURE addFeedback(IN formName VARCHAR(100), IN formEmail VARCHAR(100), formMessage TEXT)
+
+INSERT INTO userfeedback (FullName, Email,Comments,DatePosted)
+VALUES (formName
+        ,formEmail
+        ,formMessage
+        ,CURRENT_DATE);
