@@ -201,7 +201,7 @@ UserID = (SELECT UserID FROM user WHERE Username = formUsername)
 
 WHERE BlogID=formBlogID$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePassword` (IN `formUsername` VARCHAR(50), IN `formPassword` VARCHAR(50))  UPDATE `user` SET
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePassword` (IN `formUsername` VARCHAR(50), IN `formPassword` VARCHAR(255))  UPDATE `user` SET
 	Username = formUsername
 	, Password = formPassword
 
@@ -418,7 +418,7 @@ CREATE TABLE `user` (
   `UserID` smallint(5) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `PermissionID` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `Avatar` varchar(250) DEFAULT NULL,
   `Bio` text
